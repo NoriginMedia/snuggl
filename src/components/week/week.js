@@ -81,6 +81,7 @@ class Week extends Component {
         entries[entryIndex] = {
             ...entries[entryIndex],
             startTime,
+            endTime
         };
 
         this.setState({

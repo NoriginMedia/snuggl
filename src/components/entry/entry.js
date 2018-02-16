@@ -4,8 +4,7 @@ import moment from 'moment';
 import Paper from 'material-ui/Paper';
 import './entry.css';
 
-const MINUTE_WIDTH = 2;
-const DAY_LENGTH_MINUTES = 720;
+let MINUTE_WIDTH = ((window.innerWidth - window.innerWidth / 10) / 720);
 
 class Entry extends Component {
 
@@ -19,22 +18,36 @@ class Entry extends Component {
             width: ((entry.endTime - entry.startTime) / 60000) * MINUTE_WIDTH,
             widthDiff: 0
         };
+
+        window.addEventListener('resize', this.onWindowResize);
+    }
+
+    onWindowResize() {
+        MINUTE_WIDTH = ((window.innerWidth - window.innerWidth / 10) / 720);
     }
 
     positionToTime(position) {
-        const {entry, day} = this.props;
+        const {day} = this.props;
 
-        return day.startTime + ((position / MINUTE_WIDTH) * 60000);
+        return Math.round(day.startTime + ((position / MINUTE_WIDTH) * 60000));
     }
 
     onDragStop(e, drag) {
-        const {x, y} = drag;
+        const {x} = drag;
         const {resizeEntry, entry: {id}} = this.props;
 
         this.setState({
             positionX: x
         }, () => {
             resizeEntry(id, this.positionToTime(x), this.positionToTime(x + this.state.width));
+        });
+    }
+
+    onDrag(e, drag) {
+        const {x} = drag;
+
+        this.setState({
+            positionX: x
         });
     }
 
@@ -46,8 +59,7 @@ class Entry extends Component {
     }
 
     onResizeStop(e, dir, refToElement, delta, position) {
-
-        const {resizeEntry, entry: {id}} = this.props;
+        const {resizeEntry, entry: {id, endTime}} = this.props;
 
         this.setState({
             width: this.state.width + delta.width,
@@ -62,9 +74,13 @@ class Entry extends Component {
         const {entry} = this.props;
         const {positionX, width, widthDiff} = this.state;
 
+        const startTime = this.positionToTime(positionX);
+        const endTime = this.positionToTime(positionX + width + widthDiff);
+
         return (
             <Rnd
                 onDragStop={this.onDragStop.bind(this)}
+                onDrag={this.onDrag.bind(this)}
                 onResize={this.onResize.bind(this)}
                 onResizeStop={this.onResizeStop.bind(this)}
                 dragAxis="x"
@@ -87,8 +103,8 @@ class Entry extends Component {
                     }}
                 >
                     <div>{entry.title}</div>
-                    <div>{moment(entry.startTime).format('h:mm:ss')}</div>
-                    <div>{moment(entry.endTime).format('h:mm:ss')}</div>
+                    <div>{moment(startTime).format('h:mm:ss')}</div>
+                    <div>{moment(endTime).format('h:mm:ss')}</div>
                 </Paper>
             </Rnd>
         );

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Paper from 'material-ui/Paper';
 import './timeline.css';
 
 class Timeline extends Component {
@@ -24,15 +25,15 @@ class Timeline extends Component {
             <div className='timeline'>
                 {
                     points.map((point) => {
-                        return <div className='point'
-                             style=
-                             {
-                                 {
-                                    width: `${100 / (durationInHours)}%`
-                                 }
-                             }>
+                        return <Paper
+                            className="point"
+                            key={`point-${point}`}
+                            style={{
+                                width: `${100 / (durationInHours)}%`
+                            }}
+                        >
                             {from + (point)} {(from + point >= 12 ? "PM" : "AM")}
-                        </div>
+                        </Paper>;
                     })
                 }
             </div>

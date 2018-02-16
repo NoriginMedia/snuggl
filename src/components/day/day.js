@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Divider} from 'material-ui';
 import Entry from '../entry/entry';
 import './day.css';
 
