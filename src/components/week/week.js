@@ -47,7 +47,7 @@ class Week extends Component {
                     title: "OSP - Task 909",
                     startTime: 1518534840000,
                     endTime: 1518538740000,
-                    id: 989898,
+                    id: 90988787676,
                 },
                 {
                     title: "OSP - Task 909",
@@ -55,8 +55,37 @@ class Week extends Component {
                     endTime: 1518534780000,
                     id: 989898,
                 },
+                {
+                    title: "OSP - Task 91109",
+                    startTime: 1518588000000,
+                    endTime: 1518591600000,
+                    id: 98989348,
+                },
+                {
+                    title: "OSP - Task 111",
+                    startTime: 1518415200000,
+                    endTime: 1518458400000,
+                    id: 9898932248,
+                },
             ]
         };
+    }
+
+    resizeEntry(id, startTime, endTime) {
+        const entryIndex = this.state.entries.findIndex((e) => {
+            return e.id === id;
+        });
+
+        const entries = this.state.entries.slice();
+
+        entries[entryIndex] = {
+            ...entries[entryIndex],
+            startTime,
+        };
+
+        this.setState({
+            entries
+        });
     }
 
     render() {
@@ -73,6 +102,7 @@ class Week extends Component {
                         entries={entries.filter((entry) => {
                             return moment(entry.startTime).format('dddd') === day.title || moment(entry.endTime).format('dddd') === day.title;
                         })}
+                        resizeEntry={this.resizeEntry.bind(this)}
                     />;
                 })}
             </div>

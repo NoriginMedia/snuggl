@@ -1,14 +1,19 @@
 .day {
     height: 99px;
     margin: 1px 0;
+    padding: 10px 0;
+    box-sizing: border-box;
+    border-bottom: solid 1px #c0c0c0;
 }
 
 .day-title {
-    width: 100px;
+    text-align: center;
+    width: 10%;
     float: left;
 }
 
 .entries {
+    width: 90%;
     position: relative;
     float: left;
 }

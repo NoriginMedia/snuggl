@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import {Divider} from 'material-ui';
 import Entry from '../entry/entry';
 import './day.css';
 
 class Day extends Component {
     render() {
-        const {day, entries, width} = this.props;
+        const {day, entries, width, resizeEntry} = this.props;
 
         return (
             <div className="day">
@@ -20,6 +21,7 @@ class Day extends Component {
                             key={`entry-${entry.id}`}
                             entry={entry}
                             day={day}
+                            resizeEntry={resizeEntry}
                         />;
                     })}
                 </div>
