@@ -56,12 +56,19 @@ class App extends Component {
             entries
         });
 
+        let duration = Math.round((endTime - startTime) / 1000);
+        let leftOverSeconds = (Math.round((endTime - startTime) / 1000) % 60);
+
+        if (leftOverSeconds) {
+            duration -= leftOverSeconds;
+        }
+
         this.updateTogglEntry(
             id,
             {
                 start: moment(startTime).format(),
                 stop: moment(endTime).format(),
-                duration: Math.round((endTime - startTime) / 1000) - (Math.round((endTime - startTime) / 1000) % 60)
+                duration: duration
             }
         );
     }
