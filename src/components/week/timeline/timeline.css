@@ -1,6 +1,6 @@
 .timeline {
-    /*height: 20px;*/
-    margin-left: 10%;
+    height: 20px;
+    margin: 20px 0 20px 10%;
 }
 
 .point {

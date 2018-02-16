@@ -12,85 +12,36 @@ class Week extends Component {
             days: [
                 {
                     title: "Monday",
-                    startTime: 1518415200000,
-                    endTime: 1518458400000
+                    startTime: 1517810400000,
+                    endTime: 1517853600000
                 },
                 {
                     title: "Tuesday",
-                    startTime: 1518501600000,
-                    endTime: 1518544800000
+                    startTime: 1517896800000,
+                    endTime: 1517940000000
                 },
                 {
                     title: "Wednesday",
-                    startTime: 1518588000000,
-                    endTime: 1518631200000
+                    startTime: 1517983200000,
+                    endTime: 1518026400000
                 },
                 {
                     title: "Thursday",
-                    startTime: 1518674400000,
-                    endTime: 1518717600000
+                    startTime: 1518069600000,
+                    endTime: 1518112800000
                 },
                 {
                     title: "Friday",
-                    startTime: 1518760800000,
-                    endTime: 1518804000000
+                    startTime: 1518156000000,
+                    endTime: 1518199200000
                 }
-            ],
-            entries: [
-                {
-                    title: "OSP - Task 132",
-                    startTime: 1518763458000,
-                    endTime: 1518774258000,
-                    id: 134245345,
-                },
-                {
-                    title: "OSP - Task 909",
-                    startTime: 1518534840000,
-                    endTime: 1518538740000,
-                    id: 90988787676,
-                },
-                {
-                    title: "OSP - Task 909",
-                    startTime: 1518526800000,
-                    endTime: 1518534780000,
-                    id: 989898,
-                },
-                {
-                    title: "OSP - Task 91109",
-                    startTime: 1518588000000,
-                    endTime: 1518591600000,
-                    id: 98989348,
-                },
-                {
-                    title: "OSP - Task 111",
-                    startTime: 1518415200000,
-                    endTime: 1518458400000,
-                    id: 9898932248,
-                },
             ]
         };
     }
 
-    resizeEntry(id, startTime, endTime) {
-        const entryIndex = this.state.entries.findIndex((e) => {
-            return e.id === id;
-        });
-
-        const entries = this.state.entries.slice();
-
-        entries[entryIndex] = {
-            ...entries[entryIndex],
-            startTime,
-            endTime
-        };
-
-        this.setState({
-            entries
-        });
-    }
-
     render() {
-        const {days, entries} = this.state;
+        const {days} = this.state;
+        const {entries, resizeEntry} = this.props;
 
         return (
             <div className="week">
@@ -103,7 +54,7 @@ class Week extends Component {
                         entries={entries.filter((entry) => {
                             return moment(entry.startTime).format('dddd') === day.title || moment(entry.endTime).format('dddd') === day.title;
                         })}
-                        resizeEntry={this.resizeEntry.bind(this)}
+                        resizeEntry={resizeEntry}
                     />;
                 })}
             </div>

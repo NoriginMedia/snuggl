@@ -4,4 +4,5 @@
     margin: 0 1px;
     float: left;
     position: absolute;
+    overflow: hidden;
 }
