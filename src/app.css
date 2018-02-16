@@ -2,7 +2,12 @@
     user-select: none;
 }
 
+html {
+    background: #162955;
+}
+
 .snuggl-app {
     @import url('https://fonts.googleapis.com/css?family=Roboto+Slab')
     font-family: 'Roboto Slab', serif;
+    background: #162955;
 }
