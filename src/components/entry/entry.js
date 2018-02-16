@@ -102,9 +102,11 @@ class Entry extends Component {
                         width: `${width + widthDiff}px`
                     }}
                 >
-                    <div>{entry.title}</div>
-                    <div>{moment(startTime).format('h:mm:ss')}</div>
-                    <div>{moment(endTime).format('h:mm:ss')}</div>
+                    <div className='entry-title'>{entry.title}</div>
+                    <div className='entry-times'>
+                        <div className='entry-startTime'>{moment(startTime).format('h:mm a')}</div>
+                        <div className='entry-endTime'>{moment(endTime).format('h:mm a')}</div>
+                    </div>
                 </Paper>
             </Rnd>
         );

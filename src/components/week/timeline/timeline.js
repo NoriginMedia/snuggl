@@ -8,7 +8,7 @@ class Timeline extends Component {
 
         this.state = {
             from: 10,
-            durationInHours: 12
+            durationInHours: 8
         };
     }
 
@@ -32,7 +32,7 @@ class Timeline extends Component {
                                 width: `${100 / (durationInHours)}%`
                             }}
                         >
-                            {from + (point)} {(from + point >= 12 ? "PM" : "AM")}
+                            {from + (point)} {(from + point >= 12 ? "pm" : "am")}
                         </Paper>;
                     })
                 }
