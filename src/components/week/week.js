@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
+import Timeline from './timeline/timeline';
 import Day from '../day/day';
 import moment from 'moment';
 import './week.css';
-
-
 
 class Week extends Component {
     constructor() {
@@ -65,6 +64,8 @@ class Week extends Component {
 
         return (
             <div className="week">
+                <Timeline/>
+
                 {days.map((day) => {
                     return <Day
                         key={`day-${day.title}`}
