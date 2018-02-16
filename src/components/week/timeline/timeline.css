@@ -3,6 +3,10 @@
     margin: 20px 0 20px 10%;
 }
 
+.timeline-time {
+    color: #061539;
+}
+
 .point {
     @import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
     font-family: 'Roboto Slab', serif;

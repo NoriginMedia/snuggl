@@ -21,6 +21,8 @@ class App extends Component {
         toggl.getTimeEntries(moment().startOf('isoWeek').format(), moment().endOf('isoWeek').format(), (error, timeEntries) => {
 
             for (const entry of timeEntries) {
+                console.log("entry:", entry);
+
                 entries.push({
                     title: entry.description,
                     startTime: moment(entry.start).valueOf(),
@@ -58,14 +60,26 @@ class App extends Component {
             id,
             {
                 start: moment(startTime).format(),
-                stop: moment(endTime).format()
+                stop: moment(endTime).format(),
+                duration: Math.round((endTime - startTime) / 1000) - (Math.round((endTime - startTime) / 1000) % 60)
             }
         );
     }
 
     updateTogglEntry(id, data) {
         toggl.updateTimeEntry(id, data, () => {
-            console.log("callback");
+            if (id || data) {
+                console.log("updateTogglEntry:");
+
+                if (id) {
+                    console.log("- id:", id);
+                }
+
+                if (data) {
+                    console.log("- data:", data);
+                }
+            }
+
         });
     }
 

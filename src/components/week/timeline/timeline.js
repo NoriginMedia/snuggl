@@ -32,7 +32,9 @@ class Timeline extends Component {
                                 width: `${100 / (durationInHours)}%`
                             }}
                         >
-                            {from + (point)} {(from + point >= 12 ? "pm" : "am")}
+                            <div className='timeline-time'>
+                                {from + (point)} {(from + point >= 12 ? "pm" : "am")}
+                            </div>
                         </Paper>;
                     })
                 }
