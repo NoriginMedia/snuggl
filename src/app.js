@@ -5,7 +5,7 @@ import moment from 'moment';
 import Week from './components/week/week';
 import './app.css';
 
-const toggl = new TogglClient({apiToken: '5fcce5b0843d0aea1d21c13b98077550'});
+const toggl = new TogglClient({apiToken: '1c97b9df85cc13fc60a5627cab1572a7'});
 
 class App extends Component {
     constructor() {
@@ -18,7 +18,8 @@ class App extends Component {
     componentWillMount() {
         const entries = [];
 
-        toggl.getTimeEntries(moment(1517810400000).format(), moment(1518199200000).format(), (error, timeEntries) => {
+        toggl.getTimeEntries(moment().startOf('isoWeek').format(), moment().endOf('isoWeek').format(), (error, timeEntries) => {
+
             for (const entry of timeEntries) {
                 entries.push({
                     title: entry.description,
@@ -51,6 +52,20 @@ class App extends Component {
 
         this.setState({
             entries
+        });
+
+        this.updateTogglEntry(
+            id,
+            {
+                start: moment(startTime).format(),
+                stop: moment(endTime).format()
+            }
+        );
+    }
+
+    updateTogglEntry(id, data) {
+        toggl.updateTimeEntry(id, data, () => {
+            console.log("callback");
         });
     }
 

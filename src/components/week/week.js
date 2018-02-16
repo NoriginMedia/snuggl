@@ -8,34 +8,21 @@ class Week extends Component {
     constructor() {
         super();
 
+        const weekStart = moment().startOf('isoWeek');
+        const weekEnd = moment().endOf('isoWeek');
+
+        const days = [];
+
+        for (let i = weekStart.valueOf(); i <= weekEnd.valueOf() - (86400000 * 2); i += 86400000) {
+            days.push({
+                title: moment(i).format('dddd'),
+                startTime: moment(i).add(10, 'hours').valueOf(),
+                endTime: moment(i + 86400000).subtract(4, 'hours').valueOf()
+            });
+        }
+
         this.state = {
-            days: [
-                {
-                    title: "Monday",
-                    startTime: 1517810400000,
-                    endTime: 1517853600000
-                },
-                {
-                    title: "Tuesday",
-                    startTime: 1517896800000,
-                    endTime: 1517940000000
-                },
-                {
-                    title: "Wednesday",
-                    startTime: 1517983200000,
-                    endTime: 1518026400000
-                },
-                {
-                    title: "Thursday",
-                    startTime: 1518069600000,
-                    endTime: 1518112800000
-                },
-                {
-                    title: "Friday",
-                    startTime: 1518156000000,
-                    endTime: 1518199200000
-                }
-            ]
+            days
         };
     }
 

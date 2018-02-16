@@ -7,7 +7,7 @@ class Timeline extends Component {
         super();
 
         this.state = {
-            from: 7,
+            from: 10,
             durationInHours: 12
         };
     }

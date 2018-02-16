@@ -13,10 +13,6 @@ class Entry extends Component {
 
         const {entry, day} = props;
 
-        console.log("entry",entry);
-
-        console.log("entry.endTime - entry.startTime", entry.endTime - entry.startTime);
-
         this.state = {
             positionX: ((entry.startTime - day.startTime) / 60000) * MINUTE_WIDTH,
             width: ((entry.endTime - entry.startTime) / 60000) * MINUTE_WIDTH,
