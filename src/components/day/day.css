@@ -1,0 +1,14 @@
+.day {
+    height: 99px;
+    margin: 1px 0;
+}
+
+.day-title {
+    width: 100px;
+    float: left;
+}
+
+.entries {
+    position: relative;
+    float: left;
+}
