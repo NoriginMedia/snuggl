@@ -4,7 +4,7 @@ import moment from 'moment';
 import Paper from 'material-ui/Paper';
 import './entry.css';
 
-let MINUTE_WIDTH = ((window.innerWidth - window.innerWidth / 10) / 720);
+let MINUTE_WIDTH = ((window.innerWidth - window.innerWidth / 10) / 480);
 
 class Entry extends Component {
 
@@ -23,7 +23,7 @@ class Entry extends Component {
     }
 
     onWindowResize() {
-        MINUTE_WIDTH = ((window.innerWidth - window.innerWidth / 10) / 720);
+        MINUTE_WIDTH = ((window.innerWidth - window.innerWidth / 10) / 480);
     }
 
     positionToTime(position) {
